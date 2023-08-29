@@ -2,11 +2,44 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    --palia-rarity-default-primary: #4f6372;
+    --palia-rarity-default-secondary: #3e4e5d;
+    --palia-rarity-common-primary: #0b1b38;
+    --palia-rarity-common-secondary: #364153;
+    --palia-rarity-uncommon-primary: #21471e;
+    --palia-rarity-uncommon-secondary: #487d3c;
+    --palia-rarity-rare-primary: #216571;
+    --palia-rarity-rare-secondary: #077d8a;
+    --palia-rarity-epic-primary: #573ed2;
+    --palia-rarity-epic-secondary: #3f308a;
+
+    --palia-blue-light: #4cc6fb;
+    --palia-blue: #394c6a;
+    --palia-blue-dark: #2b374e;
+    --palia-blue-darker: #15142d;
+    --palia-sand: #fcebd2;
+    --palia-sand-dark: #d2b890;
+    --palia-sand-darker: #594f42;
+    --palia-yellow: #fcea5d;
+    --palia-pink: #ff91c4;
+    --palia-pink-darker: #9a4e87;
+    --palia-purple: #849cff;
+    --palia-green: #41f1ac;
+}
+
+html,
+body {
+    background: var(--palia-blue-darker);
+    min-height: 100vh;
+    height: auto;
+}
+
 h1,
 h2,
 h3,
 h4 {
-    @apply text-primary font-semibold mb-4;
+    @apply text-white font-semibold mb-4;
 }
 
 h1 {
