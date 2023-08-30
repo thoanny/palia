@@ -17,6 +17,10 @@
   </div>
 </template>
 <style scoped>
+.about {
+  @apply text-center;
+}
+
 p {
   @apply mb-4;
 }
