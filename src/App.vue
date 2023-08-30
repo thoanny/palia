@@ -9,6 +9,8 @@ import { RouterLink, RouterView } from 'vue-router'
         <img src="@/assets/logo-1.png" class="invert w-24" alt="">
         <nav>
           <RouterLink to="/">Personnages</RouterLink>
+          <button class="btn btn-sm btn-secondary" disabled>Objets</button>
+          <button class="btn btn-sm btn-secondary" disabled>Recettes</button>
           <RouterLink to="/about">À propos</RouterLink>
         </nav>
       </div>
@@ -35,7 +37,7 @@ nav {
 }
 
 nav>a {
-  @apply btn btn-secondary;
+  @apply btn btn-sm btn-secondary;
 }
 
 nav a.router-link-active {
