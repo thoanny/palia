@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 
 const characters = ref(null);
+const userWhishes = ref([]);
 
 async function getCharacters() {
 	try {
@@ -15,11 +16,51 @@ async function getCharacters() {
 getCharacters().then(c => {
 	characters.value = c;
 });
+
+function getUserWhises() {
+	const uw = localStorage.getItem('userWishes');
+	if (uw) {
+		userWhishes.value = JSON.parse(uw);
+	}
+}
+
+function toggleWish(id) {
+	const i = userWhishes.value.indexOf(id);
+	if (i > -1) {
+		userWhishes.value.splice(i, 1);
+	} else {
+		userWhishes.value.push(id);
+	}
+	localStorage.setItem('userWishes', JSON.stringify(userWhishes.value));
+}
+
+function checkWish(id) {
+	return (userWhishes.value.indexOf(id) > -1) ? true : false;
+}
+
+getUserWhises();
+
 </script>
 
 <template>
 	<div>
-		<h1>Personnages</h1>
+		<h1 class="text-center">Personnages</h1>
+		<p class="text-center mb-2 font-semibold">
+			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+				class="w-6 h-6 inline-flex">
+				<path stroke-linecap="round" stroke-linejoin="round"
+					d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672zM12 2.25V4.5m5.834.166l-1.591 1.591M20.25 10.5H18M7.757 14.743l-1.59 1.59M6 10.5H3.75m4.007-4.243l-1.59-1.59" />
+			</svg>
+			Clic gauche pour afficher plus d'informations sur l'objet.
+		</p>
+		<p class="text-center mb-6 font-semibold">
+			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+				class="w-6 h-6 inline-flex">
+				<path stroke-linecap="round" stroke-linejoin="round"
+					d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672zM12 2.25V4.5m5.834.166l-1.591 1.591M20.25 10.5H18M7.757 14.743l-1.59 1.59M6 10.5H3.75m4.007-4.243l-1.59-1.59" />
+			</svg>
+			Clic droit (appui long en tactile) pour marquerl'objet comme terminé/non terminé.
+		</p>
 		<div v-if="characters" class="flex flex-col gap-4">
 			<div v-for="character in characters" :key="character.id" class="character">
 				<div v-if="character.skill" class="absolute bottom-1 left-16">
@@ -28,15 +69,21 @@ getCharacters().then(c => {
 				</div>
 				<div class="flex items-center gap-4">
 					<img :src="'https://api.lebusmagique.fr/uploads/api/palia/characters/avatars/' + character.avatar"
-						class="w-20 h-20">
+						class="w-20 h-20 shrink-0">
 					<h4 class="mb-0 text-white">{{ character.name }}</h4>
 				</div>
 				<div class="flex gap-6 items-center">
 					<div v-if="character.wishes.length > 0" class="flex gap-2">
 						<div v-for="wish in character.wishes" :key="wish.id">
-							<label :for="'modal-whish' + wish.id">
+							<label :for="'modal-whish' + wish.id" @contextmenu.prevent="toggleWish(wish.id)"
+								class="relative">
 								<img :src="'https://api.lebusmagique.fr/uploads/api/palia/items/' + wish.item.icon"
-									class="item-icon">
+									class="item-icon" :class="{ 'opacity-50': checkWish(wish.id) }" v-if="wish.item.icon">
+								<img src="@/assets/default.png" :class="{ 'opacity-50': checkWish(wish.id) }"
+									class="item-icon" v-else>
+								<input type="checkbox"
+									class="checkbox checkbox-sm checkbox-success absolute -bottom-1 -right-1"
+									:class="{ 'hidden': !checkWish(wish.id) }" :checked="checkWish(wish.id)">
 							</label>
 							<input type="checkbox" :id="'modal-whish' + wish.id" class="modal-toggle" />
 							<div class="modal">
@@ -70,7 +117,7 @@ getCharacters().then(c => {
 									<div class="p-6 pt-0 flex flex-col gap-2">
 										<div class="text-xl font-semibold">{{ wish.item.category.name }}</div>
 
-										<div class="flex gap-1">
+										<div class="flex gap-1" v-if="wish.item.focus || wish.item.focusQuality">
 											<div class="badge text-green-400 gap-1" v-if="wish.item.focus">
 												+{{ wish.item.focus }} de concentration
 											</div>
@@ -110,8 +157,6 @@ getCharacters().then(c => {
 												</div>
 											</div>
 										</div>
-
-
 									</div>
 								</div>
 								<label class="modal-backdrop" :for="'modal-whish' + wish.id">Fermer</label>
@@ -143,7 +188,7 @@ getCharacters().then(c => {
 }
 
 .item-icon {
-	@apply w-16 h-16 aspect-square object-contain rounded-lg border-2 cursor-pointer p-1;
+	@apply w-16 h-16 aspect-square object-contain rounded-lg border-2 cursor-pointer p-1 shrink-0 flex;
 	background: var(--palia-sand);
 	border-color: var(--palia-sand-dark);
 }
