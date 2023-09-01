@@ -6,9 +6,9 @@ import { RouterLink, RouterView } from 'vue-router'
   <header>
     <div class="max-w-2xl mx-auto py-6">
       <div class="flex gap-4 justify-between items-center wb-6">
-        <img src="@/assets/logo-1.png" class="invert w-24" alt="">
+        <img src="@/assets/logo-1.png" class="invert w-24 -ml-2" alt="">
         <nav>
-          <RouterLink to="/">Personnages</RouterLink>
+          <RouterLink :to="{ name: 'Characters' }">Personnages</RouterLink>
           <button class="btn btn-sm btn-secondary" disabled>Objets</button>
           <button class="btn btn-sm btn-secondary" disabled>Recettes</button>
           <RouterLink to="/about">À propos</RouterLink>
