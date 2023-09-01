@@ -30,6 +30,28 @@
     --palia-green: #41f1ac;
 }
 
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+    scrollbar-width: auto;
+    scrollbar-color: var(--palia-blue-light) hsl(var(--p));
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 16px;
+}
+
+*::-webkit-scrollbar-track {
+    background: hsl(var(--p));
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: var(--palia-blue-light);
+    border-radius: 10px;
+    border: 3px solid hsl(var(--p));
+}
+
 .font-heading {
     font-family: 'Martel', serif;
 }
