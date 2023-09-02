@@ -2,7 +2,9 @@
 import { ref } from 'vue';
 import ItemModal from '@/components/ItemModal.vue';
 
+const allCharacters = ref(null);
 const characters = ref(null);
+const hiddenCharacters = ref([]);
 
 async function getCharacters() {
     try {
@@ -15,7 +17,34 @@ async function getCharacters() {
 
 getCharacters().then(c => {
     characters.value = c;
+    allCharacters.value = c;
+}).then(() => {
+    getHiddenCharacters();
 });
+
+function hideCharacter(slug) {
+    const i = hiddenCharacters.value.indexOf(slug);
+    if (i < 0) {
+        hiddenCharacters.value.push(slug);
+    }
+    localStorage.setItem('hiddenCharacters', JSON.stringify(hiddenCharacters.value));
+    characters.value = characters.value.filter(c => hiddenCharacters.value.indexOf(c.slug) < 0);
+}
+
+function getHiddenCharacters() {
+    const ch = localStorage.getItem('hiddenCharacters');
+    if (ch) {
+        hiddenCharacters.value = JSON.parse(ch);
+        characters.value = characters.value.filter(c => ch.indexOf(c.slug) < 0);
+    }
+}
+
+function showAllCharacters() {
+    characters.value = allCharacters.value;
+    hiddenCharacters.value = [];
+    localStorage.removeItem('hiddenCharacters');
+}
+
 </script>
 
 <template>
@@ -45,7 +74,7 @@ getCharacters().then(c => {
                 </div>
                 <div class="flex items-center gap-4">
                     <img :src="'https://api.lebusmagique.fr/uploads/api/palia/characters/avatars/' + character.avatar"
-                        class="w-20 h-20 shrink-0">
+                        class="w-20 h-20 shrink-0" @contextmenu.prevent="hideCharacter(character.slug)">
                     <h4 class="mb-0 text-white">{{ character.name }}</h4>
                 </div>
                 <div class="flex gap-6 items-center">
@@ -60,7 +89,10 @@ getCharacters().then(c => {
                         </svg>
                     </RouterLink>
                 </div>
-
+            </div>
+            <div class="flex justify-center gap-2">
+                <button @click="showAllCharacters" class="btn btn-secondary btn-sm"
+                    v-if="hiddenCharacters.length > 0">Afficher tous les personnages</button>
             </div>
         </div>
         <div class="flex justify-center" v-else>
@@ -68,7 +100,6 @@ getCharacters().then(c => {
         </div>
     </div>
 </template>
-
 
 <style scoped>
 .character {
