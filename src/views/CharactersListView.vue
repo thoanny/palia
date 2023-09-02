@@ -92,7 +92,10 @@ function showAllCharacters() {
             </div>
             <div class="flex justify-center gap-2">
                 <button @click="showAllCharacters" class="btn btn-secondary btn-sm"
-                    v-if="hiddenCharacters.length > 0">Afficher tous les personnages</button>
+                    v-if="hiddenCharacters.length > 0">Afficher
+                    {{ (hiddenCharacters.length) > 1
+                        ? 'les ' + hiddenCharacters.length + ' personnages masqués'
+                        : 'le personnage masqué' }}</button>
             </div>
         </div>
         <div class="flex justify-center" v-else>
