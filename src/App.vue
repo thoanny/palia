@@ -1,10 +1,11 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterLink, RouterView } from 'vue-router';
+import ServerClock from '@/components/ServerClock.vue';
 </script>
 
 <template>
   <header>
-    <div class="max-w-2xl mx-auto py-6 px-4">
+    <div class="max-w-2xl mx-auto py-8 px-4 relative">
       <div class="navbar bg-base-100 rounded-full border border-primary justify-between shadow-lg shadow-secondary/25">
         <div class="">
           <div class="dropdown">
@@ -50,7 +51,9 @@ import { RouterLink, RouterView } from 'vue-router'
           </ul>
         </div>
       </div>
+      <ServerClock />
     </div>
+
   </header>
   <main>
     <div class="max-w-2xl mx-auto pb-6 px-4">
