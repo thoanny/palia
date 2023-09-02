@@ -53,7 +53,7 @@ function getLocationsText(locations) {
             <div class="modal-box" :class="'rarity-' + item.rarity">
                 <label :for="(wish) ? 'modal-whish-' + wish : 'modal-item-' + item.id"
                     class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 z-30">✕</label>
-                <div class="modal-header relative bg-blue-500">
+                <div class="modal-header relative">
                     <div class="z-20 relative p-6 pb-14 flex flex-col gap-2">
                         <div class="text-2xl font-bold leading-5 font-heading">{{ item.name }}</div>
                         <div v-if="item.description">{{ item.description }}</div>
@@ -135,14 +135,6 @@ function getLocationsText(locations) {
     @apply w-16 h-16 aspect-square object-contain rounded-lg border-2 cursor-pointer p-1 shrink-0 flex;
     background: var(--palia-sand);
     border-color: var(--palia-sand-dark);
-}
-
-.modal-backdrop {
-    @apply bg-base-100 bg-opacity-75;
-}
-
-.modal-box {
-    @apply p-0 text-white;
 }
 
 .custom-divider {
@@ -235,12 +227,6 @@ function getLocationsText(locations) {
                 fill: var(--palia-rarity-epic-secondary);
             }
         }
-    }
-}
-
-.tooltip {
-    &:before {
-        @apply text-base font-bold;
     }
 }
 </style>
