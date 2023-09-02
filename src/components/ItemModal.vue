@@ -40,7 +40,7 @@ function getLocationsText(locations) {
 
 <template>
     <div>
-        <label :for="(wish) ? 'modal-whish-' + wish : 'modal-item-' + item.id"
+        <label :for="(wish) ? 'modal-whish-' + wish : 'modal-item-' + item.slug"
             @contextmenu.prevent="(wish) ? toggleWish(wish) : true" class="relative tooltip" :data-tip="item.name">
             <img :src="'https://api.lebusmagique.fr/uploads/api/palia/items/' + item.icon" class="item-icon"
                 :class="{ 'opacity-50': wish && checkWish(wish) }" v-if="item.icon">
@@ -48,10 +48,10 @@ function getLocationsText(locations) {
             <input v-if="wish" type="checkbox" class="checkbox checkbox-sm checkbox-success absolute -bottom-1 -right-1"
                 :class="{ 'hidden': !checkWish(wish) }" :checked="checkWish(wish)">
         </label>
-        <input type="checkbox" :id="(wish) ? 'modal-whish-' + wish : 'modal-item-' + item.id" class="modal-toggle" />
+        <input type="checkbox" :id="(wish) ? 'modal-whish-' + wish : 'modal-item-' + item.slug" class="modal-toggle" />
         <div class="modal">
             <div class="modal-box" :class="'rarity-' + item.rarity">
-                <label :for="(wish) ? 'modal-whish-' + wish : 'modal-item-' + item.id"
+                <label :for="(wish) ? 'modal-whish-' + wish : 'modal-item-' + item.slug"
                     class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 z-30">✕</label>
                 <div class="modal-header relative">
                     <div class="z-20 relative p-6 pb-14 flex flex-col gap-2">
@@ -125,7 +125,7 @@ function getLocationsText(locations) {
                     </div>
                 </div>
             </div>
-            <label class="modal-backdrop" :for="(wish) ? 'modal-whish-' + wish : 'modal-item-' + item.id">Fermer</label>
+            <label class="modal-backdrop" :for="(wish) ? 'modal-whish-' + wish : 'modal-item-' + item.slug">Fermer</label>
         </div>
     </div>
 </template>
