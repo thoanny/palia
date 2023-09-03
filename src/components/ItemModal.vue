@@ -6,6 +6,7 @@ const props = defineProps(['wish', 'item']);
 const userWhishes = ref([]);
 
 function toggleWish(id) {
+    getUserWhises();
     const i = userWhishes.value.indexOf(id);
     if (i > -1) {
         userWhishes.value.splice(i, 1);
@@ -16,6 +17,7 @@ function toggleWish(id) {
 }
 
 function checkWish(id) {
+    getUserWhises();
     return (userWhishes.value.indexOf(id) > -1) ? true : false;
 }
 
