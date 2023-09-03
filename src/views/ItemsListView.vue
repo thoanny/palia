@@ -2,7 +2,6 @@
 import { ref } from 'vue';
 import ItemModal from '@/components/ItemModal.vue';
 
-const allItems = ref(null);
 const items = ref(null);
 const categories = ref([]);
 const category = ref(0);
@@ -36,7 +35,6 @@ async function getItems() {
 
 getItems().then(c => {
     items.value = c;
-    allItems.value = c;
 
     c.forEach(e => {
         const i = categories.value.findIndex(cat => cat.id === e.category?.id);
@@ -48,14 +46,6 @@ getItems().then(c => {
     categories.value = sortArrayOfObjects(categories.value, "name")
 });
 
-function filterItems() {
-    if (category.value) {
-        items.value = allItems.value.filter(i => i.category.id === category.value)
-    } else {
-        items.value = allItems.value;
-    }
-}
-
 </script>
 
 <template>
@@ -66,13 +56,14 @@ function filterItems() {
                 <label class="label">
                     <span class="label-text font-bold">Catégorie</span>
                 </label>
-                <select id="category" class="select select-bordered select-sm" @change="filterItems" v-model="category">
+                <select id="category" class="select select-bordered select-sm" v-model="category">
                     <option value="0">-- Sélectionner --</option>
                     <option v-for="category in categories" :value="category.id">{{ category.name }}</option>
                 </select>
             </div>
             <div class="flex gap-x-2 gap-y-1 flex-wrap justify-center">
-                <ItemModal v-for="item in items" :key="item.id" :item="item" />
+                <ItemModal v-for="item in items" :key="item.id" :item="item"
+                    v-show="category == 0 || category === item.category.id" />
             </div>
         </div>
         <div class="flex justify-center" v-else>
