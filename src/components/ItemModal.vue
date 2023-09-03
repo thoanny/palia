@@ -109,11 +109,6 @@ function getLocationsText(locations) {
 </template>
 
 <style lang="scss" scoped>
-.item-icon {
-    @apply w-16 h-16 aspect-square object-contain rounded-lg border-2 cursor-pointer p-1 shrink-0 flex;
-    background: var(--palia-sand);
-    border-color: var(--palia-sand-dark);
-}
 
 .custom-divider {
     position: absolute;

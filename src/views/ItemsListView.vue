@@ -1,10 +1,12 @@
 <script setup>
 import { ref } from 'vue';
 import ItemModal from '@/components/ItemModal.vue';
+import ItemLine from '@/components/ItemLine.vue';
 
 const items = ref(null);
 const categories = ref([]);
 const category = ref(0);
+const displayDetails = ref(false);
 
 const sortArrayOfObjects = (arr, propertyName, order = 'ascending') => {
     const sortedArr = arr.sort((a, b) => {
@@ -52,17 +54,30 @@ getItems().then(c => {
     <div>
         <h1>Objets</h1>
         <div v-if="items">
-            <div class="form-control flex-row items-center gap-2 mb-6">
-                <label class="label">
-                    <span class="label-text font-bold">Catégorie</span>
-                </label>
-                <select id="category" class="select select-bordered select-sm" v-model="category">
-                    <option value="0">-- Sélectionner --</option>
-                    <option v-for="category in categories" :value="category.id">{{ category.name }}</option>
-                </select>
+            <div class="flex justify-between items-center mb-6">
+                <div class="form-control flex-row items-center gap-2">
+                    <label class="label">
+                        <span class="label-text font-bold">Catégorie</span>
+                    </label>
+                    <select id="category" class="select select-bordered select-sm" v-model="category">
+                        <option value="0">-- Sélectionner --</option>
+                        <option v-for="category in categories" :value="category.id">{{ category.name }}</option>
+                    </select>
+                </div>
+                <div class="form-control">
+                    <label class="label cursor-pointer gap-2">
+                        <input type="checkbox" class="toggle toggle-sm" v-model="displayDetails" />
+                        <span class="label-text">Détails</span> 
+                    </label>
+                </div>
             </div>
-            <div class="flex gap-x-2 gap-y-1 flex-wrap justify-center">
+            
+            <div class="flex flex-wrap justify-center gap-x-2 gap-y-1" v-if="!displayDetails">
                 <ItemModal v-for="item in items" :key="item.id" :item="item"
+                    v-show="category == 0 || category === item.category.id"  />
+            </div>
+            <div class="flex flex-col gap-2" v-else>
+                <ItemLine v-for="item in items" :key="item.id" :item="item"
                     v-show="category == 0 || category === item.category.id" />
             </div>
         </div>
