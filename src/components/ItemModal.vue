@@ -1,34 +1,8 @@
 <script setup>
-import { ref } from 'vue';
+import { useUserStore } from '@/stores/user';
 
 const props = defineProps(['wish', 'item']);
-
-const userWhishes = ref([]);
-
-function toggleWish(id) {
-    // getUserWhises();
-    const i = userWhishes.value.indexOf(id);
-    if (i > -1) {
-        userWhishes.value.splice(i, 1);
-    } else {
-        userWhishes.value.push(id);
-    }
-    localStorage.setItem('userWishes', JSON.stringify(userWhishes.value));
-}
-
-function checkWish(id) {
-    // getUserWhises();
-    return (userWhishes.value.indexOf(id) > -1) ? true : false;
-}
-
-function getUserWhises() {
-    const uw = localStorage.getItem('userWishes');
-    if (uw) {
-        userWhishes.value = JSON.parse(uw);
-    }
-}
-
-getUserWhises();
+const user = useUserStore();
 
 function getLocationsText(locations) {
     let locationText = [];
@@ -43,12 +17,14 @@ function getLocationsText(locations) {
 <template>
     <div>
         <label :for="(wish) ? 'modal-whish-' + wish : 'modal-item-' + item.slug"
-            @contextmenu.prevent="(wish) ? toggleWish(wish) : true" class="relative tooltip" :data-tip="item.name">
+            @contextmenu.prevent="(wish) ? user.toggleCharacterWish(wish) : true" class="relative tooltip"
+            :data-tip="item.name">
             <img :src="'https://api.lebusmagique.fr/uploads/api/palia/items/' + item.icon" class="item-icon"
-                :class="{ 'opacity-50': wish && checkWish(wish) }" v-if="item.icon">
-            <img src="@/assets/default.png" :class="{ 'opacity-50': wish && checkWish(wish) }" class="item-icon" v-else>
+                :class="{ 'opacity-50': wish && user.checkCharacterWish(wish) }" v-if="item.icon">
+            <img src="@/assets/default.png" :class="{ 'opacity-50': wish && user.checkCharacterWish(wish) }"
+                class="item-icon" v-else>
             <input v-if="wish" type="checkbox" class="checkbox checkbox-sm checkbox-success absolute -bottom-1 -right-1"
-                :class="{ 'hidden': !checkWish(wish) }" :checked="checkWish(wish)">
+                :class="{ 'hidden': !user.checkCharacterWish(wish) }" :checked="user.checkCharacterWish(wish)">
         </label>
         <input type="checkbox" :id="(wish) ? 'modal-whish-' + wish : 'modal-item-' + item.slug" class="modal-toggle" />
         <div class="modal">
