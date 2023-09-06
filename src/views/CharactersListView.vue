@@ -61,7 +61,7 @@ function showAllCharacters() {
         </label>
         <input type="checkbox" id="howtouse_characters" class="modal-toggle" />
         <div class="modal">
-            <div class="modal-box">
+            <div class="modal-box border">
                 <label for="howtouse_characters"
                     class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 z-30">✕</label>
                 <div class="flex flex-col gap-2 p-6">
@@ -93,7 +93,7 @@ function showAllCharacters() {
 
         <div v-if="characters" class="flex flex-col gap-4">
             <div v-for="character in characters" :key="character.id" class="character">
-                <div v-if="character.skill" class="absolute bottom-1 left-16">
+                <div v-if="character.skill" class="absolute top-2 right-2 sm:top-auto sm:bottom-1 sm:left-16">
                     <img :src="'https://api.lebusmagique.fr/uploads/api/palia/skills/' + character.skill.icon"
                         class="w-8 h-8">
                 </div>
@@ -107,13 +107,17 @@ function showAllCharacters() {
                         <ItemModal v-for="wish in character.wishes" :key="wish.id" :wish="wish.id" :item="wish.item" />
                     </div>
                     <RouterLink :to="{ name: 'Character', params: { slug: character.slug } }"
-                        class="btn btn-outline btn-circle btn-lg mr-2">
+                        class="hidden sm:flex btn btn-outline btn-circle btn-lg mr-2">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-8 h-8">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                         </svg>
                     </RouterLink>
                 </div>
+                <RouterLink :to="{ name: 'Character', params: { slug: character.slug } }"
+                    class="flex sm:hidden btn btn-outline btn-sm">
+                    Fiche détaillée de {{ character.name }}
+                </RouterLink>
             </div>
             <div class="flex justify-center gap-2">
                 <button @click="showAllCharacters" class="btn btn-primary btn-sm"
@@ -130,9 +134,20 @@ function showAllCharacters() {
 </template>
 
 <style scoped>
-.character {
-    @apply flex gap-4 border rounded-full p-2 items-center justify-between relative;
-    background: var(--palia-blue-dark);
+.modal .border {
     border-color: var(--palia-blue);
+}
+
+.character {
+    @apply flex gap-4 border p-4 items-center justify-between relative flex-col rounded-xl;
+    border-color: var(--palia-blue);
+    background: var(--palia-blue-dark);
+}
+
+@media screen(sm) {
+    .character {
+        @apply rounded-full flex-row p-2;
+    }
+
 }
 </style>
