@@ -51,7 +51,8 @@ getRecipes().then(r => {
 <template>
     <div>
         <h1>Recettes</h1>
-        <div v-if="recipes">
+        <p>En cours de construction...</p>
+        <!-- <div v-if="recipes">
             <div class="flex justify-between items-center mb-6">
                 <div class="form-control flex-row items-center gap-2">
                     <label class="label">
@@ -70,6 +71,6 @@ getRecipes().then(r => {
         </div>
         <div class="flex justify-center" v-else>
             <button class="btn btn-primary"><span class="loading"></span>Chargement en cours</button>
-        </div>
+        </div> -->
     </div>
 </template>
