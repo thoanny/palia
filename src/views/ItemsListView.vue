@@ -61,7 +61,8 @@ getItems().then(c => {
                     </label>
                     <select id="category" class="select select-bordered select-sm" v-model="category">
                         <option value="0">-- Sélectionner --</option>
-                        <option v-for="category in categories" :value="category.id">{{ category.name }}</option>
+                        <option v-for="category in categories" :value="category.id" :key="category.id">{{ category.name }}
+                        </option>
                     </select>
                 </div>
                 <div class="form-control">
