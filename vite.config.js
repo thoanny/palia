@@ -15,7 +15,7 @@ export default defineConfig({
   },
   server: {
     https: {
-      maxSessionMemory: 100,
+      maxSessionMemory: 1000,
       peerMaxConcurrentStreams: 300,
     }
   }

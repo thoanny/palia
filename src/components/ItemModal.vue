@@ -18,15 +18,15 @@ function getLocationsText(locations) {
 <template>
     <div>
         <label :for="(wish) ? 'modal-whish-' + wish : 'modal-item-' + item.slug"
-            @contextmenu.prevent="(wish) ? user.toggleCharacterWish(wish) : true" class="relative tooltip" :class="{'indicator': quantity}"
-            :data-tip="item.name">
+            @contextmenu.prevent="(wish) ? user.toggleCharacterWish(wish) : true" class="relative tooltip"
+            :class="{ 'indicator': quantity }" :data-tip="item.name">
             <img :src="'https://api.lebusmagique.fr/uploads/api/palia/items/' + item.icon" class="item-icon"
-                :class="{ 'opacity-50': wish && user.checkCharacterWish(wish) }" v-if="item.icon">
+                :class="{ 'opacity-50': wish && user.checkCharacterWish(wish) }" loading="lazy" v-if="item.icon">
             <img src="@/assets/default.png" :class="{ 'opacity-50': wish && user.checkCharacterWish(wish) }"
                 class="item-icon" v-else>
             <input v-if="wish" type="checkbox" class="checkbox checkbox-sm checkbox-success absolute -bottom-1 -right-1"
                 :class="{ 'hidden': !user.checkCharacterWish(wish) }" :checked="user.checkCharacterWish(wish)">
-            <span class="indicator-item indicator-bottom badge badge-secondary" v-if="quantity">{{ quantity }}</span> 
+            <span class="indicator-item indicator-bottom badge badge-secondary" v-if="quantity">{{ quantity }}</span>
         </label>
         <input type="checkbox" :id="(wish) ? 'modal-whish-' + wish : 'modal-item-' + item.slug" class="modal-toggle" />
         <div class="modal">
@@ -111,7 +111,6 @@ function getLocationsText(locations) {
 </template>
 
 <style lang="scss" scoped>
-
 .custom-divider {
     position: absolute;
     bottom: 0;
