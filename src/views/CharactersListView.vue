@@ -16,6 +16,19 @@ async function getCharacters() {
 }
 
 getCharacters().then(c => {
+
+    c.forEach(el => {
+        const avatar = new Image();
+        avatar.src = img(el.avatar, 'characters/avatar');
+
+        if (el.wishes) {
+            el.wishes.forEach(w => {
+                const wish = new Image();
+                wish.src = img(w.item.icon, 'item');
+            });
+        }
+    });
+
     characters.value = c;
     allCharacters.value = c;
 }).then(() => {
