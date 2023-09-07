@@ -12,5 +12,11 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
+  },
+  server: {
+    https: {
+      maxSessionMemory: 100,
+      peerMaxConcurrentStreams: 300,
+    }
   }
 })
