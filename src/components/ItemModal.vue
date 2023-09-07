@@ -21,7 +21,7 @@ function getLocationsText(locations) {
             @contextmenu.prevent="(wish) ? user.toggleCharacterWish(wish) : true" class="relative tooltip"
             :class="{ 'indicator': quantity }" :data-tip="item.name">
             <img :src="'https://api.lebusmagique.fr/uploads/api/palia/items/' + item.icon" class="item-icon"
-                :class="{ 'opacity-50': wish && user.checkCharacterWish(wish) }" loading="lazy" v-if="item.icon">
+                :class="{ 'opacity-50': wish && user.checkCharacterWish(wish) }" width="64" height="64" v-if="item.icon">
             <img src="@/assets/default.png" :class="{ 'opacity-50': wish && user.checkCharacterWish(wish) }"
                 class="item-icon" v-else>
             <input v-if="wish" type="checkbox" class="checkbox checkbox-sm checkbox-success absolute -bottom-1 -right-1"

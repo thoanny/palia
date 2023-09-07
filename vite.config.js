@@ -1,22 +1,20 @@
-import { fileURLToPath, URL } from 'node:url'
+import { fileURLToPath, URL } from 'node:url';
 
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import { defineConfig } from 'vite';
+import vercel from 'vite-plugin-vercel';
+import vue from '@vitejs/plugin-vue';
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
   ],
+  vercel: {
+
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
-    }
-  },
-  server: {
-    https: {
-      maxSessionMemory: 1000,
-      peerMaxConcurrentStreams: 300,
     }
   }
 })

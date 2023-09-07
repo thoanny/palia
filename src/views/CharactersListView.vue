@@ -95,11 +95,12 @@ function showAllCharacters() {
             <div v-for="character in characters" :key="character.id" class="character">
                 <div v-if="character.skill" class="absolute top-2 right-2 sm:top-auto sm:bottom-1 sm:left-16">
                     <img :src="'https://api.lebusmagique.fr/uploads/api/palia/skills/' + character.skill.icon"
-                        class="w-8 h-8" loading="lazy">
+                        class="w-8 h-8" width="32" height="32">
                 </div>
                 <div class="flex items-center gap-4">
                     <img :src="'https://api.lebusmagique.fr/uploads/api/palia/characters/avatars/' + character.avatar"
-                        class="w-20 h-20 shrink-0" @contextmenu.prevent="hideCharacter(character.slug)" loading="lazy">
+                        class="w-20 h-20 shrink-0" @contextmenu.prevent="hideCharacter(character.slug)" width="80"
+                        height="80">
                     <h4 class="mb-0 text-white">{{ character.name }}</h4>
                 </div>
                 <div class="flex gap-6 items-center">
