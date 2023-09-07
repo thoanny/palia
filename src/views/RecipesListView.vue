@@ -26,7 +26,7 @@ const sortArrayOfObjects = (arr, propertyName, order = 'ascending') => {
 
 async function getRecipes() {
     try {
-        const res = await fetch('https://api.lebusmagique.fr/api/palia/recipes');
+        const res = await fetch('https://604blazegj.preview.infomaniak.website/api/palia/recipes');
         return await res.json();
     } catch (error) {
         console.error(error);

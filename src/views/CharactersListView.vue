@@ -8,7 +8,7 @@ const hiddenCharacters = ref([]);
 
 async function getCharacters() {
     try {
-        const res = await fetch('https://api.lebusmagique.fr/api/palia/characters');
+        const res = await fetch('https://604blazegj.preview.infomaniak.website/api/palia/characters');
         return await res.json();
     } catch (error) {
         console.error(error);
@@ -94,11 +94,11 @@ function showAllCharacters() {
         <div v-if="characters" class="flex flex-col gap-4">
             <div v-for="character in characters" :key="character.id" class="character">
                 <div v-if="character.skill" class="absolute top-2 right-2 sm:top-auto sm:bottom-1 sm:left-16">
-                    <img :src="'https://api.lebusmagique.fr/uploads/api/palia/skills/' + character.skill.icon"
+                    <img :src="'https://604blazegj.preview.infomaniak.website/uploads/api/palia/skills/' + character.skill.icon"
                         class="w-8 h-8" width="32" height="32">
                 </div>
                 <div class="flex items-center gap-4">
-                    <img :src="'https://api.lebusmagique.fr/uploads/api/palia/characters/avatars/' + character.avatar"
+                    <img :src="'https://604blazegj.preview.infomaniak.website/uploads/api/palia/characters/avatars/' + character.avatar"
                         class="w-20 h-20 shrink-0" @contextmenu.prevent="hideCharacter(character.slug)" width="80"
                         height="80">
                     <h4 class="mb-0 text-white">{{ character.name }}</h4>

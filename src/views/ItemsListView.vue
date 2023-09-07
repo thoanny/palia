@@ -28,7 +28,7 @@ const sortArrayOfObjects = (arr, propertyName, order = 'ascending') => {
 
 async function getItems() {
     try {
-        const res = await fetch('https://api.lebusmagique.fr/api/palia/items');
+        const res = await fetch('https://604blazegj.preview.infomaniak.website/api/palia/items');
         return await res.json();
     } catch (error) {
         console.error(error);
@@ -67,14 +67,14 @@ getItems().then(c => {
                 <div class="form-control">
                     <label class="label cursor-pointer gap-2">
                         <input type="checkbox" class="toggle toggle-sm" v-model="displayDetails" />
-                        <span class="label-text">Détails</span> 
+                        <span class="label-text">Détails</span>
                     </label>
                 </div>
             </div>
-            
+
             <div class="flex flex-wrap justify-center gap-x-2 gap-y-1" v-if="!displayDetails">
                 <ItemModal v-for="item in items" :key="item.id" :item="item"
-                    v-show="category == 0 || category === item.category.id"  />
+                    v-show="category == 0 || category === item.category.id" />
             </div>
             <div class="flex flex-col gap-2" v-else>
                 <ItemLine v-for="item in items" :key="item.id" :item="item"

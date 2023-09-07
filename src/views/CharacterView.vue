@@ -7,7 +7,7 @@ const character = ref(null);
 
 async function getCharacter() {
     try {
-        const res = await fetch('https://api.lebusmagique.fr/api/palia/characters/' + props.slug);
+        const res = await fetch('https://604blazegj.preview.infomaniak.website/api/palia/characters/' + props.slug);
         return await res.json();
     } catch (error) {
         console.error(error);
@@ -23,8 +23,8 @@ getCharacter().then(c => {
 <template>
     <div v-if="character">
         <h1 class="flex gap-4 items-center">
-            <img :src="'https://api.lebusmagique.fr/uploads/api/palia/characters/avatars/' + character.avatar" alt=""
-                class="w-24 h-24 shrink-0">
+            <img :src="'https://604blazegj.preview.infomaniak.website/uploads/api/palia/characters/avatars/' + character.avatar"
+                alt="" class="w-24 h-24 shrink-0">
             <div class="flex flex-col gap-2">
                 {{ character.name }}
                 <div class="font-body flex gap-2">
@@ -48,7 +48,8 @@ getCharacter().then(c => {
             </div>
         </h1>
         <div v-if="character.skill" class="flex gap-4 mb-6 items-center">
-            <img :src="'https://api.lebusmagique.fr/uploads/api/palia/skills/' + character.skill.icon" class="w-14 h-14">
+            <img :src="'https://604blazegj.preview.infomaniak.website/uploads/api/palia/skills/' + character.skill.icon"
+                class="w-14 h-14">
             <div class="font-bold">Mentor de compétence&nbsp;: {{ character.skill.name }}</div>
         </div>
         <div v-if="character.wishes.length > 0">
@@ -57,7 +58,7 @@ getCharacter().then(c => {
                 <ItemModal v-for="wish in character.wishes" :key="wish.id" :wish="wish.id" :item="wish.item" />
             </div>
         </div>
-        <img :src="'https://api.lebusmagique.fr/uploads/api/palia/characters/illustrations/' + character.illustration"
+        <img :src="'https://604blazegj.preview.infomaniak.website/uploads/api/palia/characters/illustrations/' + character.illustration"
             alt="" class="mx-auto mt-6">
     </div>
     <div class="flex justify-center" v-else>
