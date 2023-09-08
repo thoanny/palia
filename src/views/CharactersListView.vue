@@ -8,7 +8,7 @@ const hiddenCharacters = ref([]);
 
 async function getCharacters() {
     try {
-        const res = await fetch(import.meta.env.VITE_LBM_API + '/api/palia/characters');
+        const res = await fetch(import.meta.env.VITE_LBM_API + '/characters');
         return await res.json();
     } catch (error) {
         console.error(error);
@@ -59,7 +59,7 @@ function showAllCharacters() {
 }
 
 function img(i, t) {
-    return import.meta.env.VITE_LBM_API + '/uploads/api/palia/' + t + 's/' + i;
+    return import.meta.env.VITE_LBM_IMG + '/' + t + 's/' + i;
 }
 
 </script>

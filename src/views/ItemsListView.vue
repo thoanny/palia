@@ -28,7 +28,7 @@ const sortArrayOfObjects = (arr, propertyName, order = 'ascending') => {
 
 async function getItems() {
     try {
-        const res = await fetch(import.meta.env.VITE_LBM_API + '/api/palia/items');
+        const res = await fetch(import.meta.env.VITE_LBM_API + '/items');
         return await res.json();
     } catch (error) {
         console.error(error);

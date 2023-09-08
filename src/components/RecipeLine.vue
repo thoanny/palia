@@ -3,7 +3,7 @@ import ItemModal from '@/components/ItemModal.vue';
 defineProps(['recipe']);
 
 function img(i) {
-    return import.meta.env.VITE_LBM_API + '/uploads/api/palia/items/' + i;
+    return import.meta.env.VITE_LBM_IMG + '/items/' + i;
 }
 </script>
 

@@ -26,7 +26,7 @@ const sortArrayOfObjects = (arr, propertyName, order = 'ascending') => {
 
 async function getRecipes() {
     try {
-        const res = await fetch(import.meta.env.VITE_LBM_API + '/api/palia/recipes');
+        const res = await fetch(import.meta.env.VITE_LBM_API + '/recipes');
         return await res.json();
     } catch (error) {
         console.error(error);

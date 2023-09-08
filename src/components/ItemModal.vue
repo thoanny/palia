@@ -14,7 +14,7 @@ function getLocationsText(locations) {
 }
 
 function img(i) {
-    return import.meta.env.VITE_LBM_API + '/uploads/api/palia/items/' + i;
+    return import.meta.env.VITE_LBM_IMG + '/items/' + i;
 }
 
 </script>
