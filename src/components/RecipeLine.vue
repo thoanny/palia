@@ -1,10 +1,6 @@
 <script setup>
 import ItemModal from '@/components/ItemModal.vue';
 defineProps(['recipe']);
-
-function img(i) {
-    return import.meta.env.VITE_LBM_IMG + '/items/' + i;
-}
 </script>
 
 <template>
@@ -14,8 +10,8 @@ function img(i) {
         </div>
         <div class="w-1/6 flex justify-center">
             <div class="tooltip" :data-tip="recipe.workshop.name">
-                <img :src="img(recipe.workshop.icon)" class="w-12 h-12 aspect-square object-contain" width="64" height="64"
-                    v-if="recipe.workshop.icon">
+                <img :src="recipe.workshop.iconEncoded" class="w-12 h-12 aspect-square object-contain" width="64"
+                    height="64" v-if="recipe.workshop.icon">
                 <img src="@/assets/default.png" class="w-12 h-12 aspect-square object-contain" v-else>
             </div>
         </div>

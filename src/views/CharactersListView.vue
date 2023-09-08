@@ -16,19 +16,6 @@ async function getCharacters() {
 }
 
 getCharacters().then(c => {
-
-    c.forEach(el => {
-        const avatar = new Image();
-        avatar.src = img(el.avatar, 'characters/avatar');
-
-        if (el.wishes) {
-            el.wishes.forEach(w => {
-                const wish = new Image();
-                wish.src = img(w.item.icon, 'item');
-            });
-        }
-    });
-
     characters.value = c;
     allCharacters.value = c;
 }).then(() => {
@@ -56,10 +43,6 @@ function showAllCharacters() {
     characters.value = allCharacters.value;
     hiddenCharacters.value = [];
     localStorage.removeItem('hiddenCharacters');
-}
-
-function img(i, t) {
-    return import.meta.env.VITE_LBM_IMG + '/' + t + 's/' + i;
 }
 
 </script>
@@ -111,10 +94,10 @@ function img(i, t) {
         <div v-if="characters" class="flex flex-col gap-4">
             <div v-for="character in characters" :key="character.id" class="character">
                 <div v-if="character.skill" class="absolute top-2 right-2 sm:top-auto sm:bottom-1 sm:left-16">
-                    <img :src="img(character.skill.icon, 'skill')" class="w-8 h-8" width="32" height="32">
+                    <img :src="character.skill.iconEncoded" class="w-8 h-8" width="32" height="32">
                 </div>
                 <div class="flex items-center gap-4">
-                    <img :src="img(character.avatar, 'characters/avatar')" alt="" class="w-20 h-20 shrink-0"
+                    <img :src="character.avatarEncoded" alt="" class="w-20 h-20 shrink-0"
                         @contextmenu.prevent="hideCharacter(character.slug)" width="80" height="80" rel="preload">
                     <h4 class="mb-0 text-white">{{ character.name }}</h4>
                 </div>
