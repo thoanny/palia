@@ -114,8 +114,8 @@ function img(i, t) {
                     <img :src="img(character.skill.icon, 'skill')" class="w-8 h-8" width="32" height="32">
                 </div>
                 <div class="flex items-center gap-4">
-                    <img :src="img(character.avatar, 'characters/avatar')" class="w-20 h-20 shrink-0"
-                        @contextmenu.prevent="hideCharacter(character.slug)" width="80" height="80">
+                    <img :src="img(character.avatar, 'characters/avatar')" alt="" class="w-20 h-20 shrink-0"
+                        @contextmenu.prevent="hideCharacter(character.slug)" width="80" height="80" rel="preload">
                     <h4 class="mb-0 text-white">{{ character.name }}</h4>
                 </div>
                 <div class="flex gap-6 items-center">
