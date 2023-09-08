@@ -13,10 +13,6 @@ function getLocationsText(locations) {
     return locationText.join(', ');
 }
 
-function img(i) {
-    return import.meta.env.VITE_LBM_IMG + '/items/' + i;
-}
-
 </script>
 
 <template>
@@ -24,7 +20,7 @@ function img(i) {
         <label :for="(wish) ? 'modal-whish-' + wish : 'modal-item-' + item.slug"
             @contextmenu.prevent="(wish) ? user.toggleCharacterWish(wish) : true" class="relative tooltip"
             :class="{ 'indicator': quantity }" :data-tip="item.name">
-            <img :src="img(item.icon)" class="item-icon" :class="{ 'opacity-50': wish && user.checkCharacterWish(wish) }"
+            <img :src="item.iconEncoded" class="item-icon" :class="{ 'opacity-50': wish && user.checkCharacterWish(wish) }"
                 width="64" height="64" v-if="item.icon">
             <img src="@/assets/default.png" :class="{ 'opacity-50': wish && user.checkCharacterWish(wish) }"
                 class="item-icon" v-else>
