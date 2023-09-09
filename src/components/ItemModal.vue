@@ -82,8 +82,8 @@ function getLocationsText(locations) {
                             +{{ item.focusQuality }} de concentration
                         </div>
                     </div>
-                    <div class="flex gap-4">
-                        <div class="flex justify-start items-center gap-1" v-if="item.priceBase || item.priceQuality">
+                    <div class="flex gap-4" v-if="item.priceBase || item.priceQuality">
+                        <div class="flex justify-start items-center gap-1">
                             <div class="font-semibold">Prix&nbsp;:</div>
                             <div v-if="item.priceBase" class="flex gap-1 items-center">
                                 {{ item.priceBase }}
