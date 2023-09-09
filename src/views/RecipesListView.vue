@@ -37,7 +37,8 @@ getRecipes().then(r => {
     recipes.value = r;
 
     r.forEach(e => {
-        const i = workshops.value.findIndex(ws => ws.id === r.workshop?.id);
+        const i = workshops.value.findIndex(ws => ws.slug === e.workshop?.slug);
+        console.log(i, e);
         if (i < 0) {
             workshops.value.push(e.workshop);
         }
@@ -55,7 +56,7 @@ getRecipes().then(r => {
             <div class="flex justify-between items-center mb-6">
                 <div class="form-control flex-row items-center gap-2">
                     <label class="label">
-                        <span class="label-text font-bold">Catégorie</span>
+                        <span class="label-text font-bold">Atelier</span>
                     </label>
                     <select id="category" class="select select-bordered select-sm" v-model="workshop">
                         <option value="">-- Sélectionner --</option>
