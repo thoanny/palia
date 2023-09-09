@@ -20,7 +20,6 @@ export const useUserStore = defineStore('user', () => {
     }
 
     function getCharacterWishes() {
-        console.log('x')
         const uw = localStorage.getItem('userWishes');
         if (uw) {
             characterWishes.value = JSON.parse(uw);

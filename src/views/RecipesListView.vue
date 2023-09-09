@@ -38,7 +38,6 @@ getRecipes().then(r => {
 
     r.forEach(e => {
         const i = workshops.value.findIndex(ws => ws.slug === e.workshop?.slug);
-        console.log(i, e);
         if (i < 0) {
             workshops.value.push(e.workshop);
         }
