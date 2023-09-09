@@ -1,7 +1,7 @@
 <script setup>
 import { useUserStore } from '@/stores/user';
 
-defineProps(['wish', 'item', 'quantity']);
+defineProps(['wish', 'item', 'quantity', 'cls']);
 
 const user = useUserStore();
 
@@ -16,17 +16,19 @@ function getLocationsText(locations) {
 </script>
 
 <template>
-    <div>
+    <div :class="cls">
         <label :for="(wish) ? 'modal-whish-' + wish : 'modal-item-' + item.slug"
             @contextmenu.prevent="(wish) ? user.toggleCharacterWish(wish) : true" class="relative tooltip"
-            :class="{ 'indicator': quantity }" :data-tip="item.name">
+            :data-tip="item.name">
             <img :src="item.iconEncoded" class="item-icon" :class="{ 'opacity-50': wish && user.checkCharacterWish(wish) }"
-                width="64" height="64" v-if="item.icon">
+                width="64" height="64" v-if="item.iconEncoded">
             <img src="@/assets/default.png" :class="{ 'opacity-50': wish && user.checkCharacterWish(wish) }"
                 class="item-icon" v-else>
             <input v-if="wish" type="checkbox" class="checkbox checkbox-sm checkbox-success absolute -bottom-1 -right-1"
                 :class="{ 'hidden': !user.checkCharacterWish(wish) }" :checked="user.checkCharacterWish(wish)">
-            <span class="indicator-item indicator-bottom badge badge-secondary" v-if="quantity">{{ quantity }}</span>
+            <span class="badge badge-sm px-1 font-bold badge-secondary absolute right-1 bottom-1" v-if="quantity">{{
+                quantity
+            }}</span>
         </label>
         <input type="checkbox" :id="(wish) ? 'modal-whish-' + wish : 'modal-item-' + item.slug" class="modal-toggle" />
         <div class="modal">

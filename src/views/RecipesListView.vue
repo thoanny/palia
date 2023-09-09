@@ -51,8 +51,7 @@ getRecipes().then(r => {
 <template>
     <div>
         <h1>Recettes</h1>
-        <p>En cours de construction...</p>
-        <!-- <div v-if="recipes">
+        <div v-if="recipes">
             <div class="flex justify-between items-center mb-6">
                 <div class="form-control flex-row items-center gap-2">
                     <label class="label">
@@ -60,7 +59,9 @@ getRecipes().then(r => {
                     </label>
                     <select id="category" class="select select-bordered select-sm" v-model="workshop">
                         <option value="">-- Sélectionner --</option>
-                        <option v-for="workshop in workshops" :key="workshop.slug" :value="workshop.slug">{{ workshop.name }}</option>
+                        <option v-for="workshop in workshops" :key="workshop.slug" :value="workshop.slug">
+                            {{ workshop.name }}
+                        </option>
                     </select>
                 </div>
             </div>
@@ -71,6 +72,6 @@ getRecipes().then(r => {
         </div>
         <div class="flex justify-center" v-else>
             <button class="btn btn-primary"><span class="loading"></span>Chargement en cours</button>
-        </div> -->
+        </div>
     </div>
 </template>

@@ -99,6 +99,11 @@ h4 {
     border-color: var(--palia-sand-dark);
 }
 
+.workshop .item-icon {
+    background-color: var(--palia-blue-dark);
+    border-color: var(--palia-blue)
+}
+
 /* Modal */
 .modal-box {
     @apply p-0 text-white;

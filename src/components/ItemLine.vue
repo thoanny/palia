@@ -5,7 +5,7 @@ defineProps(['item']);
 <template>
     <div class="flex items-center gap-2 border rounded-xl p-2 item-line">
         <div class="w-5/6 flex gap-4 items-center">
-            <img :src="item.iconEncoded" class="item-icon" v-if="item.icon" width="80" height="80">
+            <img :src="item.iconEncoded" class="item-icon" v-if="item.iconEncoded" width="80" height="80">
             <img src="@/assets/default.png" class="item-icon" v-else>
             <div>
                 <div class="font-bold">{{ item.name }}</div>
