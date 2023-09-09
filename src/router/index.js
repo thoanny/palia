@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
 import CharactersList from '../views/CharactersListView.vue';
-
+// TODO : supprimer component: HomeView
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [

@@ -1,7 +1,9 @@
 <script setup>
 import { ref } from 'vue';
+
 import ItemModal from '@/components/ItemModal.vue';
 import HowToUseCharactersList from '@/components/HowToUseCharactersList.vue';
+import CharactersWishesResetCountdown from '@/components/CharactersWishesResetCountdown.vue';
 
 const allCharacters = ref(null);
 const characters = ref(null);
@@ -50,9 +52,13 @@ function showAllCharacters() {
 
 <template>
     <div>
-        <h1>Personnages</h1>
-
-        <HowToUseCharactersList v-if="characters" />
+        <div class="flex flex-col md:flex-row gap-4 justify-between items-start mb-6">
+            <div>
+                <h1>Personnages</h1>
+                <HowToUseCharactersList v-if="characters" />
+            </div>
+            <CharactersWishesResetCountdown />
+        </div>
 
         <div v-if="characters" class="flex flex-col gap-4">
             <div v-for="character in characters" :key="character.id" class="character">
