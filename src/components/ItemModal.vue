@@ -18,8 +18,7 @@ function getLocationsText(locations) {
 <template>
     <div :class="cls">
         <label :for="(wish) ? 'modal-whish-' + wish : 'modal-item-' + item.slug"
-            @contextmenu.prevent="(wish) ? user.toggleCharacterWish(wish) : true" class="relative tooltip"
-            :data-tip="item.name">
+            @contextmenu.prevent="(wish) ? user.toggleCharacterWish(wish) : true" class="relative">
             <img :src="item.iconEncoded" class="item-icon" :class="{ 'opacity-50': wish && user.checkCharacterWish(wish) }"
                 width="64" height="64" v-if="item.iconEncoded">
             <img src="@/assets/default.png" :class="{ 'opacity-50': wish && user.checkCharacterWish(wish) }"
