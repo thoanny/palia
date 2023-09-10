@@ -1,11 +1,13 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
-import * as dayjs from 'dayjs';
-import * as utc from 'dayjs/plugin/utc'
-import * as weekday from 'dayjs/plugin/weekday'
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc'
+import weekday from 'dayjs/plugin/weekday'
+import isoWeek from 'dayjs/plugin/isoWeek'
 
 dayjs.extend(utc)
 dayjs.extend(weekday)
+dayjs.extend(isoWeek)
 
 const countdown = ref({
     days: 0,
@@ -19,7 +21,7 @@ const countdownInterval = ref(null);
 function secondsToDhms() {
 
     const now = dayjs.utc()
-    const nextReset = dayjs.utc().weekday(8).set('hour', 4).set('minute', 0).set('second', 0)
+    const nextReset = dayjs.utc().isoWeekday(1).weekday(8).set('hour', 4).set('minute', 0).set('second', 0)
     const seconds = Number(nextReset.diff(now, 'second'));
 
     countdown.value = {
@@ -32,7 +34,7 @@ function secondsToDhms() {
 
 onMounted(() => {
     secondsToDhms();
-    countdownInterval.value = setInterval(secondsToDhms, 1000); // 10 seconds
+    countdownInterval.value = setInterval(secondsToDhms, 10000); // 10 seconds
 });
 
 onUnmounted(() => {
