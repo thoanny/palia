@@ -49,20 +49,17 @@ onUnmounted(() => {
             <div v-if="countdown.days > 0">
                 <span class="countdown text-xl">
                     <span :style="{ '--value': countdown.days }"></span>
-                </span>
-                j
+                </span>j
             </div>
             <div v-if="countdown.hours > 0 || countdown.days > 0">
                 <span class="countdown text-xl">
                     <span :style="{ '--value': countdown.hours }"></span>
-                </span>
-                h
+                </span>h
             </div>
             <div v-if="countdown.hours > 0 || countdown.days > 0 || countdown.minutes > 0">
                 <span class="countdown text-xl">
                     <span :style="{ '--value': countdown.minutes }"></span>
-                </span>
-                min
+                </span>min
             </div>
             <div v-else>Les souhaits sont réinitialisés</div>
         </div>
