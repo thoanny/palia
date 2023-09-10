@@ -44,8 +44,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-    <div class="rounded-full border border-primary px-4 py-2 tooltip cursor-default"
-        data-tip="Réinitialisation des souhaits">
+    <div class="rounded-full border border-primary px-4 py-2 cursor-default" v-tippy>
         <div class="flex gap-2 font-bold text-sm">
             <div v-if="countdown.days > 0">
                 <span class="countdown text-xl">
@@ -68,5 +67,6 @@ onUnmounted(() => {
             <div v-else>Les souhaits sont réinitialisés</div>
         </div>
     </div>
+    <tippy>Réinitialisation des souhaits</tippy>
 </template>
 
