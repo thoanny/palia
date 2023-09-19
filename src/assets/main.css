@@ -120,22 +120,22 @@ h4 {
 
 .tippy-box {
     @apply font-bold;
-    background:var(--palia-sand);
+    background: var(--palia-sand);
     color: var(--palia-blue-darker);
 }
 
-.tippy-box[data-placement^="top"] > .tippy-arrow:before {
+.tippy-box[data-placement^="top"]>.tippy-arrow:before {
     border-top-color: var(--palia-sand);
 }
 
-.tippy-box[data-placement^="right"] > .tippy-arrow:before {
+.tippy-box[data-placement^="right"]>.tippy-arrow:before {
     border-right-color: var(--palia-sand);
 }
 
-.tippy-box[data-placement^="bottom"] > .tippy-arrow:before {
+.tippy-box[data-placement^="bottom"]>.tippy-arrow:before {
     border-bottom-color: var(--palia-sand);
 }
 
-.tippy-box[data-placement^="left"] > .tippy-arrow:before {
+.tippy-box[data-placement^="left"]>.tippy-arrow:before {
     border-left-color: var(--palia-sand);
 }

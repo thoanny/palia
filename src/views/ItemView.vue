@@ -113,20 +113,23 @@ function getLocationsText(locations) {
             <h2>Où acheter</h2>
             <div class="flex flex-col gap-2">
                 <div v-for="purchase, k in item.purchases" :key="k"
-                    class="flex flex-col md:flex-row gap-2 md:gap-4 py-2 px-4 rounded-xl md:rounded-full border border-primary">
+                    class="flex flex-col md:flex-row gap-1 md:gap-4 py-2 px-4 rounded-xl md:rounded-full border border-primary">
                     <div class="font-bold w-full md:w-3/12 text-center md:text-left">{{ i18n.trans(purchase.source,
                         'Item.Purchase') }}</div>
                     <div class="text-center w-full md:w-6/12">
                         <strong>{{ purchase.quantity }}&nbsp;&times;</strong> {{ item.name }}
                     </div>
-                    <div class="flex gap-2 items-center justify-center md:justify-end w-full md:w-3/12">
-                        {{ purchase.price }} <span class="tooltip tooltip-top md:tooltip-left"
-                            :data-tip="purchase.currency.name"><img :src="purchase.currency.iconEncoded" class="w-6 h-6"
-                                alt=""></span>
+                    <div class="flex gap-2 items-center justify-center md:justify-end w-full md:w-3/12" v-tippy>
+                        <div v-tippy class="flex gap-2 items-center">
+                            {{ purchase.price }}
+                            <span>
+                                <img :src="purchase.currency.iconEncoded" class="w-6 h-6" alt="">
+                            </span>
+                        </div>
+                        <tippy>{{ purchase.currency.name }}</tippy>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
     <div class="flex justify-center" v-else>
