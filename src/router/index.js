@@ -21,8 +21,19 @@ const router = createRouter({
     },
     {
       path: '/items',
-      name: 'Items',
-      component: () => import('../views/ItemsListView.vue')
+      children: [
+        {
+          path: '',
+          name: 'Items',
+          component: () => import('../views/ItemsListView.vue'),
+        },
+        {
+          path: ':slug',
+          name: 'Item',
+          props: true,
+          component: () => import('../views/ItemView.vue'),
+        }
+      ]
     },
     {
       path: '/recipes',
