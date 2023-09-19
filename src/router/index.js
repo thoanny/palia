@@ -51,7 +51,7 @@ const router = createRouter({
       component: () => import('../views/AboutView.vue')
     }
   ],
-  scrollBehavior(to, from, savedPosition) {
+  scrollBehavior() {
     return { top: 0 }
   },
 })
