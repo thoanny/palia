@@ -12,7 +12,7 @@ const router = createRouter({
           component: CharactersList,
         },
         {
-          path: 'characters/:slug',
+          path: 'personnages/:slug',
           name: 'Character',
           props: true,
           component: () => import('../views/CharacterView.vue')
@@ -20,7 +20,7 @@ const router = createRouter({
       ]
     },
     {
-      path: '/items',
+      path: '/objets',
       children: [
         {
           path: '',
@@ -36,7 +36,7 @@ const router = createRouter({
       ]
     },
     {
-      path: '/recipes',
+      path: '/recettes',
       children: [
         {
           path: '',
@@ -46,7 +46,7 @@ const router = createRouter({
       ]
     },
     {
-      path: '/about',
+      path: '/a-propos',
       name: 'About',
       component: () => import('../views/AboutView.vue')
     }
