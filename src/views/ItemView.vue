@@ -30,7 +30,7 @@ function getLocationsText(locations) {
 
 <template>
     <div v-if="item">
-        <div class="item-box rounded-2xl overflow-hidden mb-6" :class="'rarity-' + item.rarity">
+        <div class="item-box text-white rounded-2xl overflow-hidden mb-6" :class="'rarity-' + item.rarity">
             <div class="item-box-header relative">
                 <div class="z-20 relative p-6 pb-14 flex flex-col gap-2">
                     <h1 class="flex gap-4 items-center">
@@ -225,6 +225,20 @@ function getLocationsText(locations) {
         .custom-divider {
             .shape-fill {
                 fill: var(--palia-rarity-epic-secondary);
+            }
+        }
+    }
+
+    &.rarity-legendary {
+        background: var(--palia-rarity-legendary-secondary);
+
+        .item-box-header {
+            background: var(--palia-rarity-legendary-primary);
+        }
+
+        .custom-divider {
+            .shape-fill {
+                fill: var(--palia-rarity-legendary-secondary);
             }
         }
     }

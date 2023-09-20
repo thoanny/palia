@@ -32,7 +32,7 @@ function getLocationsText(locations) {
         </label>
         <tippy>{{ item.name }}</tippy>
         <input type="checkbox" :id="(wish) ? 'modal-whish-' + wish : 'modal-item-' + item.slug" class="modal-toggle" />
-        <div class="modal">
+        <div class="modal text-white">
             <div class="modal-box" :class="'rarity-' + item.rarity">
                 <label :for="(wish) ? 'modal-whish-' + wish : 'modal-item-' + item.slug"
                     class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 z-30">✕</label>
@@ -211,6 +211,20 @@ function getLocationsText(locations) {
         .custom-divider {
             .shape-fill {
                 fill: var(--palia-rarity-epic-secondary);
+            }
+        }
+    }
+
+    &.rarity-legendary {
+        background: var(--palia-rarity-legendary-secondary);
+
+        .modal-header {
+            background: var(--palia-rarity-legendary-primary);
+        }
+
+        .custom-divider {
+            .shape-fill {
+                fill: var(--palia-rarity-legendary-secondary);
             }
         }
     }
