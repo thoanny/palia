@@ -113,7 +113,7 @@ function getLocationsText(locations) {
             <h2>Où acheter</h2>
             <div class="flex flex-col gap-2 text-lg">
                 <div v-for="purchase, k in item.purchases" :key="k"
-                    class="flex gap-4 py-2 px-4 rounded-full border border-primary justify-between">
+                    class="flex gap-4 py-2 px-4 rounded-full border border-secondary justify-between bg-primary">
                     <div class="font-bold">
                         {{ i18n.trans(purchase.source, 'Item.Purchase') }}
                     </div>

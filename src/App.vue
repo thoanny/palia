@@ -61,7 +61,7 @@ import ServerClock from '@/components/ServerClock.vue';
     </div>
   </main>
   <footer>
-    <div class="max-w-2xl mx-auto py-6 text-sm text-center opacity-50 px-4">
+    <div class="max-w-2xl mx-auto py-6 text-sm text-center opacity-80 px-4">
       Tous les logos, marques et images de ce site sont la propriété de Singularity 6 Corporation.<br />
       Ce site n'est pas affilié avec l'éditeur.<br />
       Réalisé par <a href="https://thoanny.fr" target="_blank" class="underline">Thoanny</a>

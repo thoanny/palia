@@ -14,7 +14,7 @@ function formatTime(seconds) {
 </script>
 
 <template>
-    <div class="flex gap-4 items-center border rounded-xl p-2 px-3 pt-3 recipe">
+    <div class="flex gap-4 items-center border border-secondary bg-primary rounded-xl p-2 px-3 pt-3">
         <div class="w-16 flex">
             <ItemModal :item="recipe.item" :quantity="recipe.quantity" />
         </div>
@@ -24,13 +24,14 @@ function formatTime(seconds) {
         <div class="w-8 flex justify-center">
             <div v-if="recipe.craftTime > 0">
                 <div v-tippy>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-accent">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                        class="w-6 h-6 text-accent">
                         <path fill-rule="evenodd"
                             d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM12.75 6a.75.75 0 00-1.5 0v6c0 .414.336.75.75.75h4.5a.75.75 0 000-1.5h-3.75V6z"
                             clip-rule="evenodd" />
                     </svg>
                 </div>
-                <tippy>{{formatTime(recipe.craftTime)}}</tippy>
+                <tippy>{{ formatTime(recipe.craftTime) }}</tippy>
             </div>
         </div>
         <div class="flex-1 justify-end flex gap-2">
@@ -39,9 +40,3 @@ function formatTime(seconds) {
         </div>
     </div>
 </template>
-
-<style scoped>
-.recipe {
-    border-color: var(--palia-blue);
-}
-</style>
