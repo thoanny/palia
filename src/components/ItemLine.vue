@@ -3,13 +3,13 @@ defineProps(['item']);
 </script>
 
 <template>
-    <div class="flex items-center gap-2 border rounded-xl p-2 item-line">
+    <div class="flex items-center gap-2 border border-secondary bg-primary rounded-xl p-2">
         <div class="w-5/6 flex gap-4 items-center">
             <img :src="item.iconEncoded" class="item-icon" v-if="item.iconEncoded" width="80" height="80">
             <img src="@/assets/default.png" class="item-icon" v-else>
             <div>
                 <div class="font-bold">{{ item.name }}</div>
-                <span class="badge badge-sm badge-primary">{{ item.category.name }}</span>
+                <span class="badge badge-sm badge-secondary">{{ item.category.name }}</span>
                 <div v-if="item.comment" class="text-sm leading-4">{{ item.comment }}</div>
             </div>
         </div>
@@ -37,9 +37,5 @@ defineProps(['item']);
 <style scoped>
 .item-icon {
     @apply w-20 h-20 cursor-default self-start;
-}
-
-.item-line {
-    border-color: var(--palia-blue);
 }
 </style>
