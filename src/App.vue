@@ -1,6 +1,26 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router';
 import ServerClock from '@/components/ServerClock.vue';
+import { onMounted, ref } from 'vue';
+
+const installPrompt = ref(null);
+const showInstallButton = ref(false);
+
+async function handleInstallPrompt() {
+  if (!installPrompt.value) return;
+  const result = await installPrompt.value.prompt();
+  console.log(`Install prompt was: ${result.outcome}`);
+  installPrompt.value = null;
+  showInstallButton.value = false;
+}
+
+onMounted(() => {
+  window.addEventListener("beforeinstallprompt", (event) => {
+    event.preventDefault();
+    installPrompt.value = event;
+    showInstallButton.value = true;
+  });
+});
 </script>
 
 <template>
@@ -29,6 +49,9 @@ import ServerClock from '@/components/ServerClock.vue';
               <li>
                 <RouterLink :to="{ name: 'About' }">À propos</RouterLink>
               </li>
+              <li v-if="showInstallButton">
+                <button @click="handleInstallPrompt">Télécharger</button>
+              </li>
             </ul>
           </div>
           <RouterLink :to="{ name: 'Characters' }" class="btn btn-ghost normal-case text-xl font-heading">Palia
@@ -47,6 +70,9 @@ import ServerClock from '@/components/ServerClock.vue';
             </li>
             <li>
               <RouterLink :to="{ name: 'About' }">À propos</RouterLink>
+            </li>
+            <li v-if="showInstallButton">
+              <button @click="handleInstallPrompt">Télécharger</button>
             </li>
           </ul>
         </div>
