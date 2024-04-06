@@ -4,6 +4,7 @@ import { ref } from 'vue';
 import ItemModal from '@/components/ItemModal.vue';
 import HowToUseCharactersList from '@/components/HowToUseCharactersList.vue';
 import CharactersWishesResetCountdown from '@/components/CharactersWishesResetCountdown.vue';
+import CharactersIcon from '@/components/icons/Characters.vue';
 
 const allCharacters = ref(null);
 const characters = ref(null);
@@ -54,42 +55,48 @@ function showAllCharacters() {
     <div>
         <div class="flex flex-col md:flex-row gap-4 justify-between items-start mb-6">
             <div>
-                <h1>Personnages</h1>
+                <h1 class="flex gap-4">
+                    <CharactersIcon />
+                    Personnages
+                </h1>
                 <HowToUseCharactersList v-if="characters" />
             </div>
             <CharactersWishesResetCountdown />
         </div>
 
-        <div v-if="characters" class="flex flex-col gap-4">
-            <div v-for="character in characters" :key="character.id" class="character">
-                <div v-if="character.skill" class="absolute top-2 right-2 sm:top-auto sm:bottom-1 sm:left-16">
-                    <img :src="character.skill.iconEncoded" class="w-8 h-8" width="32" height="32">
-                </div>
-                <div class="flex items-center gap-4">
-                    <img :src="character.avatarEncoded" alt="" class="w-20 h-20 shrink-0"
-                        @contextmenu.prevent="hideCharacter(character.slug)" width="80" height="80" rel="preload">
-                    <h4 class="mb-0 text-white">{{ character.name }}</h4>
-                </div>
-                <div class="flex gap-6 items-center">
-                    <div v-if="character.wishes.length > 0" class="flex gap-2">
-                        <ItemModal v-for="wish in character.wishes" :key="wish.id" :wish="wish.id" :item="wish.item" />
+        <div v-if="characters">
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6 mb-6">
+                <div class="card bg-base-100 relative border character" v-for="character in characters" :key="character.id">
+                    <div class="card-body pb-6">
+                        <button class="btn btn-sm btn-square btn-ghost absolute top-5 right-4"
+                            @click="hideCharacter(character.slug)">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                            </svg>
+                        </button>
+                        <div class="flex gap-4 -mt-10 -ml-10 items-center mb-2">
+                            <RouterLink :to="{ name: 'Character', params: { slug: character.slug } }">
+                                <img :src="'https://api.lebusmagique.fr/uploads/api/palia/characters/avatars/' + character.avatar"
+                                    alt="" class="w-20 h-20 shrink-0" width="80" height="80" rel="preload">
+                            </RouterLink>
+                            <h2 class="card-title mt-2 mb-0">{{ character.name }}</h2>
+                            <div v-if="character.skill" class="mt-2">
+                                <img :src="'https://api.lebusmagique.fr/uploads/api/palia/skills/' + character.skill.icon"
+                                    class="w-8 h-8" width="32" height="32">
+                            </div>
+                        </div>
+                        <div v-if="character.wishes.length > 0" class="flex justify-center gap-2 mb-2">
+                            <ItemModal v-for="wish in character.wishes" :key="wish.id" :wish="wish.id" :item="wish.item" />
+                        </div>
                     </div>
-                    <RouterLink :to="{ name: 'Character', params: { slug: character.slug } }"
-                        class="hidden sm:flex btn btn-outline btn-circle btn-lg mr-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="w-8 h-8">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                        </svg>
-                    </RouterLink>
                 </div>
-                <RouterLink :to="{ name: 'Character', params: { slug: character.slug } }"
-                    class="flex sm:hidden btn btn-outline btn-sm">
-                    Fiche détaillée de {{ character.name }}
-                </RouterLink>
             </div>
             <div class="flex justify-center gap-2">
-                <button @click="showAllCharacters" class="btn btn-primary btn-sm"
-                    v-if="hiddenCharacters.length > 0">Afficher
+                <button @click="showAllCharacters" class="btn btn-primary" v-if="hiddenCharacters.length > 0">Afficher
                     {{ (hiddenCharacters.length) > 1
                         ? 'les ' + hiddenCharacters.length + ' personnages masqués'
                         : 'le personnage masqué' }}</button>
@@ -103,15 +110,7 @@ function showAllCharacters() {
 
 <style scoped>
 .character {
-    @apply flex gap-4 border p-4 items-center justify-between relative flex-col rounded-xl;
     border-color: var(--palia-blue);
     background: var(--palia-blue-dark);
-}
-
-@media screen(sm) {
-    .character {
-        @apply rounded-full flex-row p-2;
-    }
-
 }
 </style>

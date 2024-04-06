@@ -1,6 +1,13 @@
+<script setup>
+import AboutIcon from '@/components/icons/About.vue';
+</script>
+
 <template>
   <div class="about">
-    <h1>À propos</h1>
+    <h1 class="flex gap-4">
+      <AboutIcon />
+      À propos
+    </h1>
     <p>
       <strong>Ce site n'est pas un site officiel.</strong> Il a été créé par <a href="https://thoanny.fr"
         target="_blank">Thoanny</a> et est hébergé par <a href="https://vercel.com" target="_blank">Vercel</a>.

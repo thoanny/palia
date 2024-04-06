@@ -20,8 +20,9 @@ function getLocationsText(locations) {
     <div :class="cls">
         <label v-tippy :for="(wish) ? 'modal-whish-' + wish : 'modal-item-' + item.slug"
             @contextmenu.prevent="(wish) ? user.toggleCharacterWish(wish) : true" class="relative">
-            <img :src="item.iconEncoded" class="item-icon" :class="{ 'opacity-50': wish && user.checkCharacterWish(wish) }"
-                width="64" height="64" v-if="item.iconEncoded">
+            <img :src="'https://api.lebusmagique.fr/uploads/api/palia/items/' + item.icon" class="item-icon"
+                :class="{ 'opacity-50': wish && user.checkCharacterWish(wish) }" width="64" height="64"
+                v-if="item.iconEncoded">
             <img src="@/assets/default.png" :class="{ 'opacity-50': wish && user.checkCharacterWish(wish) }"
                 class="item-icon" v-else>
             <input v-if="wish" type="checkbox" class="checkbox checkbox-sm checkbox-success absolute -bottom-1 -right-1"

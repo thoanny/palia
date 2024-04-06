@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 import RecipeLine from '@/components/RecipeLine.vue';
+import RecipesIcon from '@/components/icons/Recipes.vue';
 
 const recipes = ref(null);
 const workshops = ref([]);
@@ -50,7 +51,10 @@ getRecipes().then(r => {
 
 <template>
     <div>
-        <h1>Recettes</h1>
+        <h1 class="flex gap-4">
+            <RecipesIcon />
+            Recettes
+        </h1>
         <div v-if="recipes">
             <div class="flex justify-between items-center mb-6">
                 <div class="form-control flex-row items-center gap-2">

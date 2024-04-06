@@ -23,7 +23,8 @@ getCharacter().then(c => {
 <template>
     <div v-if="character">
         <h1 class="flex gap-4 items-center">
-            <img :src="character.avatarEncoded" class="w-24 h-24 shrink-0">
+            <img :src="'https://api.lebusmagique.fr/uploads/api/palia/characters/avatars/' + character.avatar"
+                class="w-24 h-24 shrink-0">
             <div class="flex flex-col gap-2">
                 {{ character.name }}
                 <div class="font-body flex gap-2">
@@ -47,7 +48,7 @@ getCharacter().then(c => {
             </div>
         </h1>
         <div v-if="character.skill" class="flex gap-4 mb-6 items-center">
-            <img :src="character.skill.iconEncoded" class="w-14 h-14">
+            <img :src="'https://api.lebusmagique.fr/uploads/api/palia/skills/' + character.skill.icon" class="w-14 h-14">
             <div class="font-bold">Mentor de compétence&nbsp;: {{ character.skill.name }}</div>
         </div>
         <div v-if="character.wishes.length > 0">
@@ -56,7 +57,8 @@ getCharacter().then(c => {
                 <ItemModal v-for="wish in character.wishes" :key="wish.id" :wish="wish.id" :item="wish.item" />
             </div>
         </div>
-        <img :src="character.illustrationEncoded" class="mx-auto mt-6">
+        <img :src="'https://api.lebusmagique.fr/uploads/api/palia/characters/illustrations/' + character.illustration"
+            class="mx-auto mt-6">
     </div>
     <div class="flex justify-center" v-else>
         <button class="btn btn-primary"><span class="loading"></span>Chargement en cours</button>

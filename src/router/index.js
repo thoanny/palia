@@ -46,6 +46,26 @@ const router = createRouter({
       ]
     },
     {
+      path: '/temples',
+      children: [
+        {
+          path: '',
+          name: 'Bundles',
+          component: () => import('../views/BundlesView.vue')
+        }
+      ]
+    },
+    {
+      path: '/peche',
+      children: [
+        {
+          path: '',
+          name: 'Fish',
+          component: () => import('../views/FishView.vue')
+        }
+      ]
+    },
+    {
       path: '/a-propos',
       name: 'About',
       component: () => import('../views/AboutView.vue')

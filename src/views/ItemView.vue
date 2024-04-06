@@ -29,12 +29,13 @@ function getLocationsText(locations) {
 </script>
 
 <template>
-    <div v-if="item">
+    <div v-if="item" class="max-w-2xl mx-auto">
         <div class="item-box text-white rounded-2xl overflow-hidden mb-6" :class="'rarity-' + item.rarity">
             <div class="item-box-header relative">
                 <div class="z-20 relative p-6 pb-14 flex flex-col gap-2">
                     <h1 class="flex gap-4 items-center">
-                        <img :src="item.iconEncoded" alt="" class="item-icon" v-if="item.iconEncoded" />
+                        <img :src="'https://api.lebusmagique.fr/uploads/api/palia/items/' + item.icon" alt=""
+                            class="item-icon" v-if="item.icon" />
                         {{ item.name }}
                     </h1>
                     <div v-if="item.description">{{ item.description }}</div>

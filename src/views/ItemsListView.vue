@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import ItemModal from '@/components/ItemModal.vue';
 import ItemLine from '@/components/ItemLine.vue';
+import ItemsIcon from '@/components/icons/Items.vue';
 
 const items = ref(null);
 const categories = ref([]);
@@ -52,7 +53,10 @@ getItems().then(c => {
 
 <template>
     <div>
-        <h1>Objets</h1>
+        <h1 class="flex gap-4">
+            <ItemsIcon />
+            Objets
+        </h1>
         <div v-if="items">
             <div class="flex justify-between items-center mb-6">
                 <div class="form-control flex-row items-center gap-2">

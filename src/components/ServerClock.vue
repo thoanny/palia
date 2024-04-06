@@ -54,7 +54,7 @@ const partOfDay = computed(() => {
 </script>
 
 <template>
-    <div class="absolute top-2 flex gap-1 justify-center w-full text-xs font-bold opacity-75 left-0">
+    <div class="flex gap-1 justify-center text-xs font-bold opacity-75">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4">
             <path fill-rule="evenodd"
                 d="M10 18a8 8 0 100-16 8 8 0 000 16zm.75-13a.75.75 0 00-1.5 0v5c0 .414.336.75.75.75h4a.75.75 0 000-1.5h-3.25V5z"
